@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import worn from "../assets/worn.png";
+import black from "../assets/black.png";
+import { sizes, assurances, site } from "../data/content";
+import { arrowRight } from "../data/icons";
+---
+<section class="pricing" id="pricing" data-finish="titanium" data-pricing>
+  <figure class="pricing-photo">
+    <Image src={worn} data-finish="titanium" alt="A hand resting on linen, wearing Norma in brushed titanium" widths={[480, 800, 1024]} sizes="(max-width: 1199px) 100vw, 50vw" />
+    <Image src={black} data-finish="black" alt="A hand wearing Norma in matte black" widths={[480, 800, 1024]} sizes="(max-width: 1199px) 100vw, 50vw" />
+    <figcaption class="fig-label t-label" data-fig>Fig. 03 · Brushed titanium, size 9</figcaption>
+  </figure>
+  <form class="panel" data-order-form novalidate>
+    <h2 class="t-h2">One price. Nothing after.</h2>
+    <div class="price-block">
+      <p class="t-price">{site.price}</p>
+      <p class="t-body">Ring, USB-C charging dock and a free sizing kit. No membership, now or later.</p>
+    </div>
+    <fieldset class="finish">
+      <legend class="t-label">Finish</legend>
+      <div class="finish-opts">
+        <label class="opt"><input type="radio" name="finish" value="titanium" checked /><span class="swatch ti"></span><span style="font-size:15px">Brushed titanium</span></label>
+        <label class="opt"><input type="radio" name="finish" value="black" /><span class="swatch bk"></span><span style="font-size:15px">Matte black</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="sizes" data-sizes aria-describedby="size-hint">
+      <legend class="visually-hidden">Size</legend>
+      <div class="size-head">
+        <span class="t-label" aria-hidden="true">Size<span class="req"> · required</span></span>
+        <a class="link" href="#kit" data-open-kit style="font-size:15px;text-underline-offset:4px">Not sure? Start with the free kit</a>
+      </div>
+      <div class="size-grid">
+        {sizes.map((s) => (
+          <label class="opt"><input type="radio" name="size" value={s.size} data-mm={s.mm} aria-label={`Size ${s.size}`} />{s.size}</label>
+        ))}
+      </div>
+      <p class="size-hint" id="size-hint" aria-live="polite" data-size-hint>Pick a size, or order the free kit first and choose later.</p>
+    </fieldset>
+    <button class="btn btn-primary btn-block" type="submit" style="height:60px">Order Norma · {site.price} <Fragment set:html={arrowRight} /></button>
+    <div class="assure">
+      {assurances.map(([a, b]) => <div><span class="t-strong" style="font-size:15px">{a}</span><span class="t-small" style="font-size:14px">{b}</span></div>)}
+    </div>
+  </form>
+</section>

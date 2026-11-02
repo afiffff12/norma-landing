@@ -1,0 +1,20 @@
+---
+import { faqs, site } from "../data/content";
+import { plus, minus } from "../data/icons";
+---
+<section class="section" id="faq">
+  <div class="inner faq-grid">
+    <div class="faq-head">
+      <h2 class="t-h2">Before you order.</h2>
+      <p class="t-body">Still unsure? Write to <a class="link" href={`mailto:${site.email}`} style="text-underline-offset:4px">{site.email}</a> and a person replies within one working day.</p>
+    </div>
+    <div class="faq-list">
+      {faqs.map(([q, a], i) => (
+        <details name="faq" open={i === 0}>
+          <summary>{q}<span class="plus"><Fragment set:html={plus} /></span><span class="minus"><Fragment set:html={minus} /></span></summary>
+          <p class="t-body answer">{a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

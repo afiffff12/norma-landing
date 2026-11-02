@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import hero from "../assets/hero.png";
+import RangeBar from "./RangeBar.astro";
+import { arrowRight } from "../data/icons";
+---
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <h1 class="t-display">Know your normal.</h1>
+    <p class="t-lead">Norma spends 14 nights learning your own baseline for sleep, heart rate and temperature. After that, it speaks up only when you drift from it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#pricing">Order Norma · $299 <Fragment set:html={arrowRight} /></a>
+      <a class="link" href="#pricing" data-open-kit>Get a free sizing kit</a>
+    </div>
+    <ul class="hero-assure"><li>No subscription</li><li>30-night trial</li><li>Ships in 3 days</li></ul>
+  </div>
+  <figure class="hero-media">
+    <Image src={hero} alt="Norma ring in brushed titanium standing on a pale surface" widths={[480, 800, 1024]} sizes="(max-width: 1199px) 100vw, 50vw" loading="eager" fetchpriority="high" />
+    <figcaption class="fig-label t-label">Fig. 01</figcaption>
+    <div class="reading-card">
+      <div class="reading-head"><span class="t-label">Resting heart rate</span><span class="t-data" style="font-size:12px;color:var(--color-ink-2)">Last night</span></div>
+      <div class="reading-figure"><span class="t-data-l">54</span><span class="unit">bpm</span></div>
+      <RangeBar pos={46} label="Resting heart rate 54 bpm, inside your range of 49 to 58" scale={["49", "58"]} />
+      <p class="t-small" style="color:var(--color-ink)">Within your normal. Nothing to do.</p>
+    </div>
+  </figure>
+</section>

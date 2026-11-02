@@ -1,0 +1,46 @@
+---
+import { parts, dimensions } from "../data/content";
+const callouts = [
+  { n: "1", line: [139, 139, 64, 64], rect: [52, 52], text: [64, 68.5] },
+  { n: "2", line: [403, 157, 496, 64], rect: [484, 52], text: [496, 68.5] },
+  { n: "3", line: [280, 462, 280, 528], rect: [268, 528], text: [280, 544.5] },
+  { n: "4", line: [280, 99, 280, 28], rect: [268, 4], text: [280, 20.5] },
+];
+---
+<section class="section anatomy on-inverse" id="specs">
+  <div class="inner anat-grid">
+    <figure class="drawing reveal">
+      <svg viewBox="0 0 560 560" fill="none" role="img" aria-labelledby="xs-title">
+        <title id="xs-title">Cross section of the Norma ring with four numbered parts: shell, inner band, sensors and battery</title>
+        <path d="M280 80 A200 200 0 1 1 279.9 80 Z M280 106 A174 174 0 1 0 280.1 106 Z" fill-rule="evenodd" fill="#2A2B27" />
+        <circle cx="280" cy="280" r="200" stroke="#F2F2EE" stroke-width="1.5" />
+        <circle cx="280" cy="280" r="174" stroke="#8A8A82" stroke-width="1" />
+        <circle cx="280" cy="280" r="187" stroke="#8A8A82" stroke-width="1" stroke-dasharray="3 5" />
+        <path d="M213 105 A187 187 0 0 1 347 105" stroke="#55554F" stroke-width="12" />
+        <rect x="248" y="448" width="14" height="8" fill="#F2F2EE" /><rect x="273" y="450" width="14" height="8" fill="#F2F2EE" /><rect x="298" y="448" width="14" height="8" fill="#F2F2EE" />
+        <line x1="20" y1="280" x2="540" y2="280" stroke="#8A8A82" stroke-width="0.5" stroke-dasharray="2 6" />
+        {callouts.map((c) => (
+          <g data-callout={c.n}>
+            <line x1={c.line[0]} y1={c.line[1]} x2={c.line[2]} y2={c.line[3]} stroke="#F2F2EE" />
+            <rect x={c.rect[0]} y={c.rect[1]} width="24" height="24" fill="#F2F2EE" />
+            <text x={c.text[0]} y={c.text[1]} font-family="IBM Plex Mono, monospace" font-size="12" fill="#0E0F0D" text-anchor="middle">{c.n}</text>
+          </g>
+        ))}
+      </svg>
+      <figcaption class="t-label">Fig. 02 · Cross section, scale 20:1</figcaption>
+    </figure>
+    <div class="spec-list">
+      <h2 class="t-h2 reveal">Everything inside 2.6 millimetres.</h2>
+      <ol class="parts">
+        {parts.map((p, i) => (
+          <li class="part reveal" style={`--i:${i}`} data-part={p.n} tabindex="0">
+            <span class="n">{p.n}</span><span class="pn">{p.name}</span><span class="pt">{p.text}</span>
+          </li>
+        ))}
+      </ol>
+      <dl class="dims">
+        {dimensions.map((d) => <div><dt class="t-label">{d.label}</dt><dd class="t-data-m">{d.value}</dd></div>)}
+      </dl>
+    </div>
+  </div>
+</section>

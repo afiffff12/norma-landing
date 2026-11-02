@@ -1,0 +1,101 @@
+/*
+  Norma design tokens.
+  Same names and values as the Framer color styles, text styles and the
+  Wonder file, so the coded and Framer versions stay in step.
+*/
+:root {
+  /* Color */
+  --color-page: #f2f2ee;          /* cool bond paper */
+  --color-band: #e6e6e0;          /* tinted section, Norma column */
+  --color-hair: #c9c9c1;          /* hairlines, normal band */
+  --color-ink: #141414;           /* primary text, strong rules */
+  --color-ink-2: #55554f;         /* secondary text */
+  --color-inverse: #0e0f0d;       /* anatomy section */
+  --color-inverse-raised: #2a2b27;/* hover on dark buttons */
+  --color-on-inverse: #f2f2ee;
+  --color-on-inverse-muted: #8a8a82;
+  --color-flag: #8f1d17;          /* oxblood: out of range, primary action */
+  --color-flag-pressed: #6f140f;
+  --color-flag-tint: #f0deda;
+
+  /* Type families */
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "IBM Plex Sans", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Type scale (desktop ≥1200) */
+  --fs-display: 88px;
+  --fs-h2: 48px;
+  --fs-h3: 28px;
+  --fs-quote: 24px;
+  --fs-lead: 21px;
+  --fs-body: 17px;
+  --fs-small: 15px;
+  --fs-caption: 13px;
+  --fs-label: 12px;
+  --fs-data: 15px;
+  --fs-data-large: 40px;
+  --fs-data-medium: 26px;
+  --fs-price: 56px;
+  --fs-wordmark: 30px;
+
+  /* Space */
+  --section-y: 128px;
+  --section-x: 80px;
+  --content-max: 1280px;
+  --nav-h: 72px;
+
+  /* Shape: no shadows, square corners, 2px on controls */
+  --radius-control: 2px;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-reveal: 500ms;
+  --dur-draw: 900ms;
+  --stagger: 60ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Tablet 810–1199 */
+@media (max-width: 1199px) {
+  :root {
+    --fs-display: 64px;
+    --fs-h2: 40px;
+    --fs-h3: 26px;
+    --fs-quote: 22px;
+    --fs-lead: 19px;
+    --fs-data-large: 36px;
+    --fs-price: 52px;
+    --section-y: 96px;
+    --section-x: 40px;
+  }
+}
+
+/* Phone <810 */
+@media (max-width: 809px) {
+  :root {
+    --fs-display: 52px;
+    --fs-h2: 36px;
+    --fs-h3: 24px;
+    --fs-quote: 20px;
+    --fs-lead: 17px;
+    --fs-body: 16px;
+    --fs-data-large: 34px;
+    --fs-data-medium: 22px;
+    --fs-price: 48px;
+    --section-y: 64px;
+    --section-x: 24px;
+    --nav-h: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-reveal: 0ms;
+    --dur-draw: 0ms;
+    --stagger: 0ms;
+  }
+}

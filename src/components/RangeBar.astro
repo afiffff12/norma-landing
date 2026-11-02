@@ -1,0 +1,15 @@
+---
+/**
+ * The signature element: the visitor's own normal band (25–75 % of the track)
+ * with last night's marker placed inside or outside it.
+ */
+interface Props { pos: number; flagged?: boolean; label: string; scale?: [string, string] }
+const { pos, flagged = false, label, scale } = Astro.props;
+---
+<div class="range" data-range role="img" aria-label={label}>
+  <div class="range-track">
+    <span class="range-band"></span>
+    <span class:list={["range-marker", { flag: flagged }]} style={`left:${pos}%`}></span>
+  </div>
+  {scale && <div class="range-scale" aria-hidden="true"><span>{scale[0]}</span><span>{scale[1]}</span></div>}
+</div>

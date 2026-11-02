@@ -1,0 +1,31 @@
+---
+import { footerCols, disclaimer } from "../data/content";
+import { logo } from "../data/icons";
+---
+<footer class="footer">
+  <div class="inner">
+    <div class="footer-cols">
+      <a class="brand" href="#top" aria-label="Norma home"><Fragment set:html={logo(5)} /><span>Norma</span></a>
+      {footerCols.map((c) => (
+        <nav aria-label={c.title}>
+          <p class="t-label">{c.title}</p>
+          <ul>{c.links.map(([l, h]) => <li><a class="link" href={h}>{l}</a></li>)}</ul>
+        </nav>
+      ))}
+      <div class="news">
+        <p class="t-label">Monthly notes</p>
+        <p class="t-small" style="color:var(--color-ink)">One email a month on sleep and recovery. No promotions.</p>
+        <form data-news-form novalidate>
+          <label class="visually-hidden" for="news-email">Email address</label>
+          <input id="news-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" />
+          <button class="btn btn-dark" type="submit">Subscribe</button>
+        </form>
+        <p class="t-caption msg" aria-live="polite" data-news-msg></p>
+      </div>
+    </div>
+    <div class="legal">
+      <p class="t-caption">{disclaimer}</p>
+      <p class="t-caption">Privacy · Terms · Cookies</p>
+    </div>
+  </div>
+</footer>

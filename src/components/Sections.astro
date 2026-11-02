@@ -1,0 +1,112 @@
+---
+import RangeBar from "./RangeBar.astro";
+import { specs, steps, measures, neverList, noteReadings, comparison, notes } from "../data/content";
+---
+<section class="specs" aria-label="Key specs">
+  {specs.map((s, i) => (
+    <div class="spec reveal" style={`--i:${i}`}>
+      <span class="t-label">{s.label}</span>
+      <span class="t-data-m">{s.figure}</span>
+      <span class="note">{s.note}</span>
+    </div>
+  ))}
+</section>
+
+<section class="section" id="how-it-works">
+  <div class="inner stack-64">
+    <div class="heading-row">
+      <h2 class="t-h2 reveal">Fourteen nights, then quiet.</h2>
+      <p class="t-body reveal" style="--i:1">Most trackers hand you a new score every morning. Norma compares you with you, and stays silent when there is nothing worth saying.</p>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step reveal" style={`--i:${i}`}>
+          <span class="n">{s.n}</span>
+          <h3 class="t-h3">{s.title}</h3>
+          <p class="t-body">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="section band" id="what-it-measures">
+  <div class="inner stack-64">
+    <div class="heading-row">
+      <h2 class="t-h2 reveal">What Norma reads, and how often.</h2>
+      <p class="t-body reveal" style="--i:1">Six measures, all taken while you sleep, when your body is still and the readings are steady. The bar shows where last night sits inside your own range.</p>
+    </div>
+    <div>
+      <div class="mtable" role="table" aria-label="Measures">
+        <div class="mrow head" role="row">
+          <span class="t-label" role="columnheader">Measure</span>
+          <span class="t-label col-sensor" role="columnheader">Sensor</span>
+          <span class="t-label col-sampled" role="columnheader">Sampled</span>
+          <span class="t-label" role="columnheader">Last night</span>
+          <span class="t-label" role="columnheader">Your range</span>
+          <span class="t-label" role="columnheader">Position</span>
+        </div>
+        {measures.map((m) => (
+          <div class:list={["mrow", { flagged: m.flagged }]} role="row" data-range>
+            <span class="name" role="cell">{m.name}{m.flagged && <span class="flag-tag">Flag</span>}</span>
+            <span class="sm col-sensor" role="cell">{m.sensor}</span>
+            <span class="sm col-sampled" role="cell">{m.sampled}</span>
+            <span class="value" role="cell">{m.value}</span>
+            <span class="t-data" role="cell" style="color:var(--color-ink-2)">{m.range}</span>
+            <span class="range-cell" role="cell">
+              <span class="range-track" style="display:block"><span class="range-band"></span><span class:list={["range-marker", { flag: m.flagged }]} style={`left:${m.pos}%`}></span></span>
+              <span class="visually-hidden">{m.flagged ? "Outside your range" : "Inside your range"}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+      <div class="mlist" data-mlist>
+        <ul>
+          {measures.map((m) => (
+            <li class:list={["mitem", { flagged: m.flagged }]} data-range>
+              <div class="top"><span class="name">{m.name}{m.flagged && <span class="flag-tag">Flag</span>}</span><span class="value">{m.value}</span></div>
+              <span class="range-track" style="display:block" role="img" aria-label={`${m.value}, your range ${m.range}, ${m.flagged ? "outside" : "inside"} your range`}><span class="range-band"></span><span class:list={["range-marker", { flag: m.flagged }]} style={`left:${m.pos}%`}></span></span>
+              <span class="meta">{m.sensor.split(",")[0]} · {m.sampled.toLowerCase()} · range {m.range}</span>
+            </li>
+          ))}
+        </ul>
+        <button class="link mlist-more" type="button" data-mlist-more aria-expanded="false">See all 6 measures</button>
+      </div>
+      <p class="mnote">Norma is a wellness device. It does not diagnose conditions and is not a substitute for advice from your doctor. Ranges shown are an example member’s.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="morning-note">
+  <div class="inner note-grid">
+    <div class="note-copy">
+      <h2 class="t-h2 reveal">One note, when it matters.</h2>
+      <p class="t-body reveal" style="--i:1">On most mornings the app has little to say: you slept, you are in range. When something drifts, you get a short note that says what changed, for how long, and one thing to try.</p>
+      <div class="never reveal" style="--i:2">
+        <p class="t-label" style="padding:12px 0;border-bottom:1px solid var(--color-hair)">What the note never does</p>
+        <ul>{neverList.map((n) => <li>{n}</li>)}</ul>
+      </div>
+    </div>
+    <div class="sheet-wrap reveal" style="--i:1">
+      <article class="sheet" aria-label="Example morning note">
+        <div class="sheet-head"><span class="t-label" style="color:var(--color-ink)">Norma · Morning note</span><span class="t-data" style="font-size:12px;color:var(--color-ink-2)">Thu 6 Nov · 06:42</span></div>
+        <h3 class="t-h3">Your temperature has run high two nights in a row.</h3>
+        <p class="t-body">Last night your skin sat 0.7 °C above your normal, after +0.5 °C the night before. Resting heart rate is up 4 bpm. This pattern often shows up before a cold, or after a hard training week.</p>
+        <div class="readings">
+          {noteReadings.map((r) => (
+            <div class:list={{ flagged: r.flagged }}>
+              <span style="color:var(--color-ink)">{r.name}</span>
+              <span class="t-data">{r.value}</span>
+              <RangeBar pos={r.pos} flagged={r.flagged} label={`${r.name} ${r.value}, ${r.flagged ? "outside" : "inside"} your range`} />
+            </div>
+          ))}
+        </div>
+        <div class="suggest">
+          <span class="t-label">Worth trying</span>
+          <p style="color:var(--color-ink);font-size:17px;line-height:1.5">Keep today easy and aim for bed before 23:00. If this lasts past three nights or you feel unwell, talk to a doctor.</p>
+        </div>
+        <p class="sheet-foot">Worn 23:14–06:31 · 7 h 17 m of readings</p>
+      </article>
+    </div>
+  </div>
+</section>

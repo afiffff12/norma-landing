@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import hero from "../assets/hero.png";
+import { close } from "../data/icons";
+---
+<dialog class="cart" id="cart" aria-labelledby="cart-title">
+  <div class="cart-inner">
+    <div class="dlg-head"><h2 class="t-h3" id="cart-title">Your order</h2><button class="icon-btn" type="button" data-close aria-label="Close your order"><Fragment set:html={close} /></button></div>
+    <div class="cart-item">
+      <Image src={hero} alt="" width={176} height={176} />
+      <div class="info">
+        <div class="top"><span class="t-strong">Norma Ring</span><span class="t-data" style="font-size:16px">$299</span></div>
+        <span class="t-data" style="font-size:13px;color:var(--color-ink-2)" data-cart-variant>Brushed titanium · size 9</span>
+      </div>
+    </div>
+    <div class="cart-box">
+      <span class="t-label">In the box</span>
+      <ul class="t-small" style="color:var(--color-ink)"><li>Norma Ring in your size</li><li>USB-C charging dock and cable</li><li>Quick-start card</li></ul>
+    </div>
+    <div class="cart-totals">
+      <div class="row"><span class="t-small">Subtotal</span><span class="t-data">$299.00</span></div>
+      <div class="row"><span class="t-small">Shipping</span><span class="t-data">Free</span></div>
+      <div class="row"><span class="t-small">Membership</span><span class="t-data">None</span></div>
+      <div class="row total"><span class="t-strong">Total</span><span class="t-data-m">$299.00</span></div>
+      <p class="t-caption" style="text-align:right">or 4 interest-free payments of $74.75</p>
+    </div>
+    <div class="cart-foot">
+      <button class="btn btn-primary btn-block" type="button" disabled aria-describedby="cart-note">Check out</button>
+      <p class="t-caption" id="cart-note" style="font-family:var(--font-data);font-size:12px;text-align:center">Concept site: checkout is not connected. Your 30-night trial would start the day it arrives.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="kit" id="kit" aria-labelledby="kit-title" data-state="form">
+  <div class="kit-inner">
+    <div class="dlg-head"><h2 class="t-h2" id="kit-title" style="font-size:36px;line-height:1.1">Free sizing kit</h2><button class="icon-btn" type="button" data-close aria-label="Close sizing kit"><Fragment set:html={close} /></button></div>
+    <p class="t-body">Fingers swell at night, so a size that fits at noon can pinch at 3 a.m. The kit lets you test overnight before you pay.</p>
+    <ol class="kit-steps">
+      <li><span class="t-data">1</span>We post eight plastic sizers, sizes 6 to 13.</li>
+      <li><span class="t-data">2</span>Wear your best guess for 24 hours, including one night.</li>
+      <li><span class="t-data">3</span>Order with that size. The kit is yours to keep.</li>
+    </ol>
+    <form data-kit-form novalidate>
+      <label>Full name<input name="name" autocomplete="name" required placeholder="Rania Hapsari" /></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required placeholder="name@example.com" /></label>
+      <label>Address<input name="address" autocomplete="street-address" required placeholder="Street, number, apartment" /></label>
+      <label>City and postal code<input name="city" autocomplete="address-level2" required placeholder="Jakarta Pusat 10330" /></label>
+      <p class="t-small" data-kit-error aria-live="polite" style="color:var(--color-flag)"></p>
+      <button class="btn btn-dark btn-block" type="submit">Send my free kit</button>
+    </form>
+    <p class="sent" role="status" tabindex="-1">Your kit is on its way. Check your inbox.<br /><span class="t-caption">Concept site: nothing was sent and no data was stored.</span></p>
+    <p class="t-caption" style="font-family:var(--font-data);font-size:12px;text-align:center">No card needed · arrives in 3–5 days · one kit per address</p>
+  </div>
+</dialog>
+
+<div class="order-bar" data-order-bar data-show="false" aria-hidden="true">
+  <div><p class="nm">Norma</p><p class="t-data" style="font-size:12px;color:var(--color-ink-2)">$299 · no subscription</p></div>
+  <a class="btn btn-primary" href="#pricing" tabindex="-1">Choose size</a>
+</div>

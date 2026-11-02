@@ -1,0 +1,21 @@
+---
+import { nav, drawerNav, site } from "../data/content";
+import { logo, menu, close } from "../data/icons";
+---
+<header class="nav">
+  <a class="brand" href="#top" aria-label="Norma home"><Fragment set:html={logo()} /><span>Norma</span></a>
+  <nav aria-label="Main"><ul class="nav-links">{nav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul></nav>
+  <div class="nav-actions">
+    <a class="nav-size" href="#pricing">Find your size</a>
+    <a class="btn btn-outline" href="#pricing">Order · {site.price}</a>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu" data-menu>
+      <span data-icon="open"><Fragment set:html={menu} /></span>
+      <span data-icon="close" hidden><Fragment set:html={close} /></span>
+    </button>
+  </div>
+</header>
+<div class="drawer" id="drawer" data-open="false" aria-label="Menu">
+  <nav aria-label="Mobile"><ul>{drawerNav.map((l) => <li><a href={l.href} data-close-menu>{l.label}</a></li>)}</ul></nav>
+  <a class="link drawer-kit" href="#pricing" data-close-menu data-open-kit>Get a free sizing kit</a>
+  <a class="t-small drawer-mail" href={`mailto:${site.email}`}>{site.email}</a>
+</div>

@@ -1,0 +1,45 @@
+---
+import { comparison, notes } from "../data/content";
+---
+<section class="section" id="compare">
+  <div class="inner stack-64">
+    <div class="heading-row">
+      <h2 class="t-h2 reveal">Side by side, before you choose.</h2>
+      <p class="t-body reveal" style="--i:1">You are probably weighing a few options. Here is how Norma stacks up against the two most common ones, on the things people ask us most.</p>
+    </div>
+    <div>
+      <div class="ctable" role="table" aria-label="Norma compared with a typical smartwatch and a ring with membership">
+        <div class="crow head" role="row">{comparison.head.map((h) => <span role="columnheader">{h}</span>)}</div>
+        {comparison.rows.map((r) => (
+          <div class="crow" role="row">
+            <span role="rowheader" style="color:var(--color-ink)">{r[0]}</span>
+            {r.slice(1).map((c) => <span role="cell">{c}</span>)}
+          </div>
+        ))}
+      </div>
+      <ul class="clist">
+        {comparison.mobile.map((r) => (
+          <li class="citem"><div class="top"><span style="font-size:16px">{r[0]}</span><span class="pill">{r[1]}</span></div><span class="t-caption">{r[2]}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="members">
+  <div class="inner stack-64">
+    <div class="members-head">
+      <h2 class="t-h2 reveal">In their words.</h2>
+      <p class="t-data" style="font-size:14px;color:var(--color-ink-2)">4.6 of 5 · from 1,284 verified buyer reviews</p>
+    </div>
+    <ul class="notes">
+      {notes.map((n, i) => (
+        <li class="mnote-card reveal" style={`--i:${i}`}>
+          <span class="t-label">{n.key}</span>
+          <blockquote class="t-quote">{n.quote}</blockquote>
+          <p class="who"><span class="t-strong" style="font-size:15px">{n.name}</span><span class="t-caption">{n.role}</span></p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
